@@ -36,4 +36,8 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        Quizlet.sharedInstance.beginAuthorization(self)
+    }
 }

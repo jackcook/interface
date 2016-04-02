@@ -10,6 +10,7 @@
 		EB0A96641CB0543300A6AF74 /* LargeArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0A96631CB0543300A6AF74 /* LargeArticleCell.xib */; };
 		EB2EE6D81CB048190051883F /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB2EE6D71CB048190051883F /* ArticleCell.xib */; };
 		EB2EE6DA1CB04B370051883F /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EE6D91CB04B370051883F /* ArticleCell.swift */; };
+		EB8DF9921CB0631B004F30F7 /* Quizlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8DF9911CB0631B004F30F7 /* Quizlet.swift */; };
 		EBCCC87C1CB0475C001EEF5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCC87B1CB0475C001EEF5B /* AppDelegate.swift */; };
 		EBCCC87E1CB0475C001EEF5B /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCC87D1CB0475C001EEF5B /* ArticlesViewController.swift */; };
 		EBCCC8811CB0475C001EEF5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBCCC87F1CB0475C001EEF5B /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		EB0A96631CB0543300A6AF74 /* LargeArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeArticleCell.xib; sourceTree = "<group>"; };
 		EB2EE6D71CB048190051883F /* ArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArticleCell.xib; path = ../../interface/Interface/ArticleCell.xib; sourceTree = "<group>"; };
 		EB2EE6D91CB04B370051883F /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
+		EB8DF9911CB0631B004F30F7 /* Quizlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quizlet.swift; sourceTree = "<group>"; };
 		EBCCC8781CB0475C001EEF5B /* Interface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interface.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBCCC87B1CB0475C001EEF5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBCCC87D1CB0475C001EEF5B /* ArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				EB2EE6D71CB048190051883F /* ArticleCell.xib */,
 				EB2EE6D91CB04B370051883F /* ArticleCell.swift */,
 				EB0A96631CB0543300A6AF74 /* LargeArticleCell.xib */,
+				EB8DF9911CB0631B004F30F7 /* Quizlet.swift */,
 				EBCCC87F1CB0475C001EEF5B /* Main.storyboard */,
 				EBCCC8821CB0475C001EEF5B /* Assets.xcassets */,
 				EBCCC8841CB0475C001EEF5B /* LaunchScreen.storyboard */,
@@ -148,6 +151,7 @@
 			files = (
 				EBCCC87E1CB0475C001EEF5B /* ArticlesViewController.swift in Sources */,
 				EBCCC87C1CB0475C001EEF5B /* AppDelegate.swift in Sources */,
+				EB8DF9921CB0631B004F30F7 /* Quizlet.swift in Sources */,
 				EB2EE6DA1CB04B370051883F /* ArticleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
