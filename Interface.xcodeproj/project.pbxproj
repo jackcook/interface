@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB2EE6D81CB048190051883F /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB2EE6D71CB048190051883F /* ArticleCell.xib */; };
+		EB2EE6DA1CB04B370051883F /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EE6D91CB04B370051883F /* ArticleCell.swift */; };
 		EBCCC87C1CB0475C001EEF5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCC87B1CB0475C001EEF5B /* AppDelegate.swift */; };
-		EBCCC87E1CB0475C001EEF5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCC87D1CB0475C001EEF5B /* ViewController.swift */; };
+		EBCCC87E1CB0475C001EEF5B /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCC87D1CB0475C001EEF5B /* ArticlesViewController.swift */; };
 		EBCCC8811CB0475C001EEF5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBCCC87F1CB0475C001EEF5B /* Main.storyboard */; };
 		EBCCC8831CB0475C001EEF5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBCCC8821CB0475C001EEF5B /* Assets.xcassets */; };
 		EBCCC8861CB0475C001EEF5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBCCC8841CB0475C001EEF5B /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB2EE6D71CB048190051883F /* ArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArticleCell.xib; path = ../../interface/Interface/ArticleCell.xib; sourceTree = "<group>"; };
+		EB2EE6D91CB04B370051883F /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		EBCCC8781CB0475C001EEF5B /* Interface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interface.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBCCC87B1CB0475C001EEF5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EBCCC87D1CB0475C001EEF5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EBCCC87D1CB0475C001EEF5B /* ArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
 		EBCCC8801CB0475C001EEF5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EBCCC8821CB0475C001EEF5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBCCC8851CB0475C001EEF5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,7 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				EBCCC87B1CB0475C001EEF5B /* AppDelegate.swift */,
-				EBCCC87D1CB0475C001EEF5B /* ViewController.swift */,
+				EBCCC87D1CB0475C001EEF5B /* ArticlesViewController.swift */,
+				EB2EE6D71CB048190051883F /* ArticleCell.xib */,
+				EB2EE6D91CB04B370051883F /* ArticleCell.swift */,
 				EBCCC87F1CB0475C001EEF5B /* Main.storyboard */,
 				EBCCC8821CB0475C001EEF5B /* Assets.xcassets */,
 				EBCCC8841CB0475C001EEF5B /* LaunchScreen.storyboard */,
@@ -122,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB2EE6D81CB048190051883F /* ArticleCell.xib in Resources */,
 				EBCCC8861CB0475C001EEF5B /* LaunchScreen.storyboard in Resources */,
 				EBCCC8831CB0475C001EEF5B /* Assets.xcassets in Resources */,
 				EBCCC8811CB0475C001EEF5B /* Main.storyboard in Resources */,
@@ -135,8 +142,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBCCC87E1CB0475C001EEF5B /* ViewController.swift in Sources */,
+				EBCCC87E1CB0475C001EEF5B /* ArticlesViewController.swift in Sources */,
 				EBCCC87C1CB0475C001EEF5B /* AppDelegate.swift in Sources */,
+				EB2EE6DA1CB04B370051883F /* ArticleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +294,7 @@
 				EBCCC88C1CB0475C001EEF5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
