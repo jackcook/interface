@@ -17,6 +17,10 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        Quizlet.sharedInstance.createSet(["term1": "term1valuea", "term2": "term2valuea"]) { (url) in
+            print(url)
+        }
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -7,6 +7,7 @@
 //
 
 import SafariServices
+import SwiftyJSON
 import UIKit
 
 public class Quizlet: NSObject, SFSafariViewControllerDelegate {
@@ -21,6 +22,16 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
         return Static.instance
     }
     
+    public var accessToken: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().stringForKey("QuizletAccessToken")
+        }
+        
+        set(newValue) {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "QuizletAccessToken")
+        }
+    }
+    
     private var safariViewController: SFSafariViewController?
     private var state: String?
     
@@ -33,6 +44,66 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
         
         safariViewController = SFSafariViewController(URL: url)
         viewController.presentViewController(safariViewController!, animated: true, completion: nil)
+    }
+    
+    func createSet(words: [String: String], completion: (url: NSURL?) -> Void) {
+        guard let accessToken = accessToken else {
+            return
+        }
+        
+        let url = NSURL(string: "https://api.quizlet.com/2.0/sets")!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        
+        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfig)
+        
+        var bodyParameters = [
+            "lang_terms": "fr",
+            "lang_definitions": "en",
+            "title": "4/2/16 Article Words"
+        ]
+        
+        for (idx, (term, definition)) in words.enumerate() {
+            bodyParameters["terms[]\(idx)"] = term
+            bodyParameters["definitions[]\(idx)"] = definition
+        }
+        
+        var parts = [String]()
+        for (key, value) in bodyParameters {
+            let part = NSString(format: "%@=%@",
+                                String(key).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!,
+                                String(value).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+            parts.append(part as String)
+        }
+        
+        var bodyString = parts.joinWithSeparator("&")
+        
+        for i in 0..<words.count {
+            bodyString = bodyString.stringByReplacingOccurrencesOfString("terms[]\(i)", withString: "terms[]")
+            bodyString = bodyString.stringByReplacingOccurrencesOfString("definitions[]\(i)", withString: "definitions[]")
+        }
+        
+        request.HTTPBody = bodyString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            guard let data = data else {
+                return
+            }
+            
+            let json = JSON(data: data, error: nil)
+            
+            guard let url = json["url"].string, quizletUrl = NSURL(string: "https://quizlet.com\(url)") else {
+                return
+            }
+            
+            completion(url: quizletUrl)
+        }
+        
+        task.resume()
     }
     
     func handleAuthorizationResponse(url: NSURL) {
@@ -62,6 +133,11 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
         requestTokenWithCode(code)
     }
     
+    func openSetWithURL(viewController: UIViewController, url: NSURL) {
+        let svc = SFSafariViewController(URL: url)
+        viewController.presentViewController(svc, animated: true, completion: nil)
+    }
+    
     func requestTokenWithCode(code: String) {
         guard let url = NSURL(string: "https://api.quizlet.com/oauth/token?grant_type=authorization_code&code=\(code)") else {
             return
@@ -80,7 +156,13 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
                 return
             }
             
-            print(NSString(data: data, encoding: NSUTF8StringEncoding))
+            let json = JSON(data: data, error: nil)
+            
+            guard let accessToken = json["access_token"].string else {
+                return
+            }
+            
+            self.accessToken = accessToken
         }
         
         task.resume()
