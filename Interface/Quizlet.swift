@@ -11,6 +11,7 @@ import UIKit
 
 public class Quizlet: NSObject, SFSafariViewControllerDelegate {
     
+    let authToken = "bW5nVDI1QTM2QzphWmtDcDlGZGVHZjRlUDJIOTV3dm03"
     private let clientId = "mngT25A36C"
     
     public class var sharedInstance: Quizlet {
@@ -26,7 +27,7 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
     func beginAuthorization(viewController: UIViewController) {
         state = NSUUID().UUIDString
         
-        guard let url = NSURL(string: "https://quizlet.com/authorize?response_type=code&client_id=\(clientId)&scope=read&state=\(state!)") else {
+        guard let url = NSURL(string: "https://quizlet.com/authorize?response_type=code&client_id=\(clientId)&scope=read&state=\(state!)&scope=write_set") else {
             return
         }
         
@@ -58,6 +59,30 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
             return
         }
         
-        print(code)
+        requestTokenWithCode(code)
+    }
+    
+    func requestTokenWithCode(code: String) {
+        guard let url = NSURL(string: "https://api.quizlet.com/oauth/token?grant_type=authorization_code&code=\(code)") else {
+            return
+        }
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        
+        request.addValue("Basic \(authToken)", forHTTPHeaderField: "Authorization")
+        
+        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfig)
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            guard let data = data else {
+                return
+            }
+            
+            print(NSString(data: data, encoding: NSUTF8StringEncoding))
+        }
+        
+        task.resume()
     }
 }
