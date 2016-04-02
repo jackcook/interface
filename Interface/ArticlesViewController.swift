@@ -17,10 +17,17 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    @IBAction func quizletButton(sender: UIBarButtonItem) {
+        let setId = Quizlet.sharedInstance.setId
         
-        Quizlet.sharedInstance.createSet(["term1": "term1valuea", "term2": "term2valuea"]) { (url) in
-            print(url)
+        guard setId > 0 else {
+            return
         }
+        
+        let url = NSURL(string: "https://quizlet.com/\(setId)/")!
+        UIApplication.sharedApplication().openURL(url)
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -36,12 +43,14 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         let cell = NSBundle.mainBundle().loadNibNamed(indexPath.row % 5 == 0 ? "LargeArticleCell" : "ArticleCell", owner: self, options: nil)[0] as! ArticleCell
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        Quizlet.sharedInstance.beginAuthorization(self)
+        performSegueWithIdentifier("articleSegue", sender: nil)
     }
 }

@@ -32,6 +32,16 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
         }
     }
     
+    public var setId: Int {
+        get {
+            return NSUserDefaults.standardUserDefaults().integerForKey("QuizletSetID")
+        }
+        
+        set(newValue) {
+            NSUserDefaults.standardUserDefaults().setInteger(newValue, forKey: "QuizletSetID")
+        }
+    }
+    
     private var safariViewController: SFSafariViewController?
     private var state: String?
     
@@ -64,7 +74,7 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
         var bodyParameters = [
             "lang_terms": "fr",
             "lang_definitions": "en",
-            "title": "4/2/16 Article Words"
+            "title": "Article Words"
         ]
         
         for (idx, (term, definition)) in words.enumerate() {
@@ -96,9 +106,11 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
             
             let json = JSON(data: data, error: nil)
             
-            guard let url = json["url"].string, quizletUrl = NSURL(string: "https://quizlet.com\(url)") else {
+            guard let url = json["url"].string, id = json["id"].int, quizletUrl = NSURL(string: "https://quizlet.com\(url)") else {
                 return
             }
+            
+            self.setId = id
             
             completion(url: quizletUrl)
         }

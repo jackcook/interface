@@ -37,14 +37,40 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Articles" id="Q5q-k3-a5C"/>
+                    <navigationItem key="navigationItem" title="Articles" id="Q5q-k3-a5C">
+                        <barButtonItem key="leftBarButtonItem" image="Quizlet" id="L7g-JJ-qqB">
+                            <inset key="imageInsets" minX="6" minY="8" maxX="6" maxY="8"/>
+                            <connections>
+                                <action selector="quizletButton:" destination="BYZ-38-t0r" id="5uW-jB-dgZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="w1y-aM-IOp" id="UIQ-aO-50y"/>
+                        <segue destination="EaD-Ei-YQ3" kind="show" identifier="articleSegue" id="vHj-yD-wzU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="951" y="387"/>
+        </scene>
+        <!--Article View Controller-->
+        <scene sceneID="Sig-sI-wJr">
+            <objects>
+                <viewController id="EaD-Ei-YQ3" customClass="ArticleViewController" customModule="Interface" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MiA-2H-GZt"/>
+                        <viewControllerLayoutGuide type="bottom" id="ycr-Zj-qCf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Rv-rT-gjs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6mP-nN-jBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1745" y="387"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bda-4w-p01">
@@ -65,4 +91,7 @@
             <point key="canvasLocation" x="117" y="387"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Quizlet" width="37" height="48"/>
+    </resources>
 </document>
