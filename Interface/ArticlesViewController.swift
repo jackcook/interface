@@ -18,6 +18,8 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBarHidden = false
+        
         Interface.sharedInstance.retrieveArticles { (articles) in
             guard let articles = articles else {
                 return
@@ -35,14 +37,18 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBAction func quizletButton(sender: UIBarButtonItem) {
-        let setId = Quizlet.sharedInstance.setId
-        
-        guard setId > 0 else {
-            return
+        if Quizlet.sharedInstance.accessToken == nil {
+            Quizlet.sharedInstance.beginAuthorization(self)
+        } else {
+            let setId = Quizlet.sharedInstance.setId
+            
+            guard setId > 0 else {
+                return
+            }
+            
+            let url = NSURL(string: "https://quizlet.com/\(setId)/")!
+            UIApplication.sharedApplication().openURL(url)
         }
-        
-        let url = NSURL(string: "https://quizlet.com/\(setId)/")!
-        UIApplication.sharedApplication().openURL(url)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

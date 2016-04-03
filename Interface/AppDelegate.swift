@@ -30,8 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Quizlet.sharedInstance.setId = 130628115
-        
         if language != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let avc = storyboard.instantiateViewControllerWithIdentifier("ArticlesViewController") as! ArticlesViewController
