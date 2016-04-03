@@ -43,14 +43,13 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
         let cell = NSBundle.mainBundle().loadNibNamed(indexPath.row % 5 == 0 ? "LargeArticleCell" : "ArticleCell", owner: self, options: nil)[0] as! ArticleCell
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         performSegueWithIdentifier("articleSegue", sender: nil)
     }
 }

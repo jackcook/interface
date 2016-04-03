@@ -12,7 +12,7 @@ import UIKit
 
 public class Quizlet: NSObject, SFSafariViewControllerDelegate {
     
-    let authToken = "bW5nVDI1QTM2QzphWmtDcDlGZGVHZjRlUDJIOTV3dm03"
+    private let authToken = "bW5nVDI1QTM2QzphWmtDcDlGZGVHZjRlUDJIOTV3dm03"
     private let clientId = "mngT25A36C"
     
     public class var sharedInstance: Quizlet {
