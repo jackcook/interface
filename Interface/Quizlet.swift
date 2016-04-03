@@ -42,10 +42,18 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
         }
     }
     
+    private var addedTerms = [String]()
+    
     private var safariViewController: SFSafariViewController?
     private var state: String?
     
-    func addTermsToSet(terms: [String: String]) {
+    func addTermToSet(term: String, translation: String) {
+        guard !addedTerms.contains(term) else {
+            return
+        }
+        
+        self.addedTerms.append(term)
+        
         guard let accessToken = accessToken else {
             return
         }
@@ -53,9 +61,37 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: sessionConfig)
         
-        for (term, definition) in terms {
-            guard let url = NSURL(string: "https://api.quizlet.com/2.0/sets/\(setId)/terms?term=\(term)&definition=\(definition)") else {
-                continue
+        guard let url = NSURL(string: "https://api.quizlet.com/2.0/sets/\(setId)") else {
+            return
+        }
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        
+        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            guard let data = data else {
+                return
+            }
+            
+            let json = JSON(data: data, error: nil)
+            
+            var storedTerms = [String: String]()
+            if let retrievedTerms = json["terms"].array {
+                for datum in retrievedTerms {
+                    if let term = datum["term"].string, translation = datum["definition"].string {
+                        storedTerms[term] = translation
+                    }
+                }
+            }
+            
+            guard !storedTerms.keys.contains(term) else {
+                return
+            }
+            
+            guard let url = NSURL(string: "https://api.quizlet.com/2.0/sets/\(self.setId)/terms?term=\(term)&definition=\(translation)") else {
+                return
             }
             
             let request = NSMutableURLRequest(URL: url)
@@ -66,12 +102,14 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
             let task = session.dataTaskWithRequest(request)
             task.resume()
         }
+        
+        task.resume()
     }
     
     func beginAuthorization(viewController: UIViewController) {
         state = NSUUID().UUIDString
         
-        guard let url = NSURL(string: "https://quizlet.com/authorize?response_type=code&client_id=\(clientId)&scope=read&state=\(state!)&scope=write_set") else {
+        guard let url = NSURL(string: "https://quizlet.com/authorize?response_type=code&client_id=\(clientId)&scope=read&state=\(state!)&scope=write_set%20read") else {
             return
         }
         
@@ -95,7 +133,7 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
         let session = NSURLSession(configuration: sessionConfig)
         
         var bodyParameters = [
-            "lang_terms": "fr",
+            "lang_terms": lang,
             "lang_definitions": "en",
             "title": "Article Words"
         ]
@@ -198,6 +236,7 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
             }
             
             self.accessToken = accessToken
+            print(accessToken)
         }
         
         task.resume()

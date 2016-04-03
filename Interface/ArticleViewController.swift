@@ -126,6 +126,8 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.translateLabel.text = translation
                 })
+                
+                Quizlet.sharedInstance.addTermToSet(text, translation: translation)
             }
         }
         
@@ -143,32 +145,9 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
                 self.translateView.frame = CGRectMake(16, 80, self.view.bounds.width - 32, 36)
             })
             
-            textView.becomeFirstResponder()
-            
-            let copyItem = UIMenuItem(title: "Copy", action: #selector(copyText))
-            let translateItem = UIMenuItem(title: "Save", action: #selector(save))
-            UIMenuController.sharedMenuController().menuItems = [copyItem, translateItem]
-            UIMenuController.sharedMenuController().setTargetRect(CGRectMake(point.x, point.y, 1, 1), inView: view)
-            UIMenuController.sharedMenuController().setMenuVisible(true, animated: true)
+            becomeFirstResponder()
         default:
             break
-        }
-    }
-    
-    internal func copyText() {
-        let text = (textView.text as NSString).substringWithRange(textView.selectedRange)
-        UIPasteboard.generalPasteboard().string = text
-    }
-    
-    internal func save() {
-        let term = (textView.text as NSString).substringWithRange(textView.selectedRange)
-        
-        Interface.sharedInstance.translateTerm(term) { (translation) in
-            guard let translation = translation else {
-                return
-            }
-            
-            Quizlet.sharedInstance.addTermsToSet([term: translation])
         }
     }
     
@@ -177,6 +156,6 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
     }
     
     override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        return action == #selector(copyText) || action == #selector(save)
+        return false
     }
 }

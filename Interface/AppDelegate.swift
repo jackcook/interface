@@ -8,12 +8,17 @@
 
 import UIKit
 
+let lang = "sv"
+let language = "sv-SE"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        Quizlet.sharedInstance.setId = 130628115
+        
         return true
     }
     

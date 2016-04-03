@@ -57,7 +57,7 @@ public class Interface {
     }
     
     func retrieveArticles(completion: (articles: [Article]?) -> Void) {
-        guard let url = NSURL(string: "\(baseUrl)/articles") else {
+        guard let url = NSURL(string: "\(baseUrl)/articles?lang=\(language)") else {
             return
         }
         
@@ -103,7 +103,7 @@ public class Interface {
             return
         }
         
-        guard let urlString = "\(baseUrl)/translate?term=\(term)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()), url = NSURL(string: urlString) else {
+        guard let urlString = "\(baseUrl)/translate?term=\(term)&lang=\(lang)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()), url = NSURL(string: urlString) else {
             completion(translation: nil)
             return
         }
