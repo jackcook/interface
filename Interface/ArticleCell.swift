@@ -23,6 +23,11 @@ class ArticleCell: UITableViewCell {
         
         sourceImage.image = sourceImage.image?.imageWithRenderingMode(.AlwaysTemplate)
         sourceImage.tintColor = UIColor(white: 0, alpha: 0.75)
+        
+        sourceImage.alpha = 0
+        
+        let hour = Int(arc4random_uniform(9)) + 1
+        timeLabel.text = "\(hour)h"
     }
     
     func configure(article: Article) {
