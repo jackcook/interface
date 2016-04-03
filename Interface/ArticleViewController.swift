@@ -45,7 +45,7 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
             articleTitle = UILabel()
             articleTitle.font = UIFont.systemFontOfSize(22, weight: UIFontWeightSemibold)
             articleTitle.numberOfLines = 0
-            articleTitle.text = "Un charnier de l’Etat islamique découvert à Palmyre, en Syrie"
+            articleTitle.text = article.title
             scrollView.addSubview(articleTitle)
         }
         
@@ -146,7 +146,7 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
             textView.becomeFirstResponder()
             
             let copyItem = UIMenuItem(title: "Copy", action: #selector(copyText))
-            let translateItem = UIMenuItem(title: "Translate", action: #selector(translate))
+            let translateItem = UIMenuItem(title: "Save", action: #selector(save))
             UIMenuController.sharedMenuController().menuItems = [copyItem, translateItem]
             UIMenuController.sharedMenuController().setTargetRect(CGRectMake(point.x, point.y, 1, 1), inView: view)
             UIMenuController.sharedMenuController().setMenuVisible(true, animated: true)
@@ -160,8 +160,16 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
         UIPasteboard.generalPasteboard().string = text
     }
     
-    internal func translate() {
+    internal func save() {
+        let term = (textView.text as NSString).substringWithRange(textView.selectedRange)
         
+        Interface.sharedInstance.translateTerm(term) { (translation) in
+            guard let translation = translation else {
+                return
+            }
+            
+            Quizlet.sharedInstance.addTermsToSet([term: translation])
+        }
     }
     
     override func canBecomeFirstResponder() -> Bool {
@@ -169,6 +177,6 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
     }
     
     override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        return action == #selector(copyText) || action == #selector(translate)
+        return action == #selector(copyText) || action == #selector(save)
     }
 }
