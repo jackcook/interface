@@ -45,6 +45,29 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
     private var safariViewController: SFSafariViewController?
     private var state: String?
     
+    func addTermsToSet(terms: [String: String]) {
+        guard let accessToken = accessToken else {
+            return
+        }
+        
+        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfig)
+        
+        for (term, definition) in terms {
+            guard let url = NSURL(string: "https://api.quizlet.com/2.0/sets/\(setId)/terms?term=\(term)&definition=\(definition)") else {
+                continue
+            }
+            
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            
+            request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            
+            let task = session.dataTaskWithRequest(request)
+            task.resume()
+        }
+    }
+    
     func beginAuthorization(viewController: UIViewController) {
         state = NSUUID().UUIDString
         
