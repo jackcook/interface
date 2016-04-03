@@ -57,7 +57,7 @@ public class Interface {
     }
     
     func retrieveArticles(completion: (articles: [Article]?) -> Void) {
-        guard let url = NSURL(string: "\(baseUrl)/articles?lang=\(language)") else {
+        guard let language = language, url = NSURL(string: "\(baseUrl)/articles?lang=\(language)") else {
             return
         }
         

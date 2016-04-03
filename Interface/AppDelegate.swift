@@ -8,8 +8,21 @@
 
 import UIKit
 
-let lang = "sv"
-let language = "sv-SE"
+var language: String? {
+    get {
+        return NSUserDefaults.standardUserDefaults().stringForKey("InterfaceLanguage")
+    }
+
+    set(newValue) {
+        NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "InterfaceLanguage")
+    }
+}
+
+var lang: String {
+    get {
+        return language!.componentsSeparatedByString("-")[0]
+    }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Quizlet.sharedInstance.setId = 130628115
+        
+        if language != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let avc = storyboard.instantiateViewControllerWithIdentifier("ArticlesViewController") as! ArticlesViewController
+            
+            let navController = UINavigationController()
+            window?.rootViewController = navController
+            
+            navController.pushViewController(avc, animated: false)
+        }
         
         return true
     }
