@@ -8,6 +8,8 @@
 
 import UIKit
 
+var imageCache = [String: UIImage]()
+
 class ArticleCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,5 +23,14 @@ class ArticleCell: UITableViewCell {
         
         sourceImage.image = sourceImage.image?.imageWithRenderingMode(.AlwaysTemplate)
         sourceImage.tintColor = UIColor(white: 0, alpha: 0.75)
+    }
+    
+    func configure(article: Article) {
+        titleLabel.text = article.title
+        firstLineLabel?.text = article.description
+        
+        Interface.sharedInstance.getArticleThumbnail(article) { (image) in
+            self.articleImage.image = image
+        }
     }
 }

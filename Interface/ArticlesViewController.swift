@@ -12,8 +12,23 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
+    private var articles = [Article]()
+    private var articleToSend: Article!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Interface.sharedInstance.retrieveArticles { (articles) in
+            guard let articles = articles else {
+                return
+            }
+            
+            self.articles = articles
+            
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.tableView.reloadData()
+            })
+        }
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -30,6 +45,11 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
         UIApplication.sharedApplication().openURL(url)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let avc = segue.destinationViewController as! ArticleViewController
+        avc.article = articleToSend
+    }
+    
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return indexPath.row % 5 == 0 ? 312 : 136
     }
@@ -39,17 +59,20 @@ class ArticlesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return articles.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = NSBundle.mainBundle().loadNibNamed(indexPath.row % 5 == 0 ? "LargeArticleCell" : "ArticleCell", owner: self, options: nil)[0] as! ArticleCell
+        cell.configure(articles[indexPath.row])
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        articleToSend = articles[indexPath.row]
         performSegueWithIdentifier("articleSegue", sender: nil)
     }
 }

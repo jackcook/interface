@@ -12,6 +12,8 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var article: Article!
+    
     private var articleTitle: UILabel!
     private var imageView: UIImageView!
     private var textView: ArticleTextView!
@@ -21,6 +23,13 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageView = UIImageView()
+        scrollView.addSubview(imageView)
+        
+        Interface.sharedInstance.getArticleThumbnail(article) { (image) in
+            self.imageView.image = image
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -43,21 +52,33 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
         let articleTitleHeight = (articleTitle.text! as NSString).boundingRectWithSize(CGSizeMake(scrollView.bounds.width - 32, CGFloat.max), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: articleTitle.font], context: nil).height
         articleTitle.frame = CGRectMake(16, 16, scrollView.bounds.width - 32, articleTitleHeight)
         
-        if imageView == nil {
-            imageView = UIImageView()
-            imageView.image = UIImage(named: "Article Image")
-            scrollView.addSubview(imageView)
-        }
-        
-        let width = scrollView.bounds.width
-        imageView.frame = CGRectMake(0, articleTitle.frame.origin.y + articleTitle.frame.size.height + 16, width, width * (9/16))
+        let imageWidth = scrollView.bounds.width
+        imageView.frame = CGRectMake(0, articleTitle.frame.origin.y + articleTitle.frame.size.height + 16, imageWidth, imageWidth * (9/16))
         
         if textView == nil {
+            guard let text = article.text else {
+                return
+            }
+            
+            var articleText = text.componentsSeparatedByString("\n")
+            
+            var idx = 0
+            for line in articleText {
+                if line.characters.count < 50 {
+                    articleText.removeAtIndex(idx)
+                    idx -= 1
+                }
+                
+                idx += 1
+            }
+            
+            let finalText = articleText.joinWithSeparator("\n\n")
+            
             textView = ArticleTextView(delegate: self)
             textView.editable = false
             textView.font = UIFont.systemFontOfSize(16)
             textView.scrollEnabled = false
-            textView.text = "JOSEPH EID / AFP\n\nPrès d’une semaine après le départ des djihadistes, la de Palmyre, qui a fui les combats des dernières semaines, n’était toujours pas revenue par crainte des mines plantées par l’EI, de représailles du régime ou du fait des importantes destructions causées par les combats et les bombardements aériens russes. Estimée à 70 000 personnes avant la guerre, elle était tombée à 15 000 durant la présence de l’EI.\n\nLa cité antique, patrimoine mondial de l’humanité, a par ailleurs subi de sérieuses dégradations, certaines parties ayant été dynamitées par les djihadistes. Un photographe de l’Agence France-presse (AFP), Joseph Eid, a comparé les ruines avant et après l’occupation par l’EI.\n\n\"Le temple de Bêl ne sera plus jamais comme avant. D'après nos experts, nous allons pouvoir certainement restaurer un tiers de la cella détruite et peut-être plus après des études complémentaires avec l'Unesco. Cela prendra cinq ans de travail sur le terrain\", a affirmé le directeur des antiquités syriennes, Maamoun Abdelkarim."
+            textView.text = finalText
             scrollView.addSubview(textView)
             
             let paragraphStyle = NSMutableParagraphStyle()
@@ -74,6 +95,7 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
         
         if translateView == nil {
             translateView = UIView()
+            translateView.alpha = 0
             translateView.backgroundColor = UIColor(white: 0, alpha: 0.85)
             translateView.layer.cornerRadius = 8
             view.addSubview(translateView)
@@ -83,7 +105,7 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
         if translateLabel == nil {
             translateLabel = UILabel()
             translateLabel.font = UIFont.systemFontOfSize(16, weight: UIFontWeightSemibold)
-            translateLabel.text = "around twenty"
+            translateLabel.text = ""
             translateLabel.textAlignment = .Center
             translateLabel.textColor = UIColor.whiteColor()
             translateView.addSubview(translateLabel)
@@ -92,12 +114,7 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
     }
     
     func longTouchReceived(point: CGPoint, state: UIGestureRecognizerState, text: String) {
-        switch state {
-        case .Began:
-            UIView.animateWithDuration(0.25, animations: {
-                self.translateView.alpha = 1
-            })
-        case .Changed:
+        func moveTranslationView() {
             translateView.frame = CGRectMake(16, point.y - 96 - translateView.frame.size.height, translateView.frame.size.width, translateView.frame.size.height)
             
             let text = (textView.text as NSString).substringWithRange(textView.selectedRange)
@@ -110,10 +127,19 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
                     self.translateLabel.text = translation
                 })
             }
+        }
+        
+        switch state {
+        case .Began:
+            UIView.animateWithDuration(0.25, animations: {
+                self.translateView.alpha = 1
+                moveTranslationView()
+            })
+        case .Changed:
+            moveTranslationView()
         case .Ended:
             UIView.animateWithDuration(0.25, animations: {
                 self.translateView.alpha = 0
-            }, completion: { (done) in
                 self.translateView.frame = CGRectMake(16, 80, self.view.bounds.width - 32, 36)
             })
             

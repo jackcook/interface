@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="578" height="154"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Article Image" translatesAutoresizingMaskIntoConstraints="NO" id="BcP-Aj-wG1">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BcP-Aj-wG1">
                     <rect key="frame" x="466" y="29" width="96" height="96"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="96" id="88H-Tf-Bhp"/>
@@ -104,7 +104,6 @@ En savoir plus sur http://www.lemonde.fr/attaques-a-paris/article/2016/04/01/a-p
         </view>
     </objects>
     <resources>
-        <image name="Article Image" width="1068" height="711"/>
         <image name="LeMonde" width="139" height="32"/>
     </resources>
 </document>

@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="605" height="460"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Article Image" translatesAutoresizingMaskIntoConstraints="NO" id="RcM-Uf-fq9">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RcM-Uf-fq9">
                     <rect key="frame" x="16" y="16" width="573" height="322.5"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="RcM-Uf-fq9" secondAttribute="height" multiplier="16:9" id="d4r-LM-9QL"/>
@@ -77,7 +77,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Article Image" width="1068" height="711"/>
         <image name="LeMonde" width="139" height="32"/>
     </resources>
 </document>
