@@ -99,15 +99,50 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
             })
         case .Changed:
             translateView.frame = CGRectMake(16, point.y - 96 - translateView.frame.size.height, translateView.frame.size.width, translateView.frame.size.height)
-            translateLabel.text = text
+            
+            let text = (textView.text as NSString).substringWithRange(textView.selectedRange)
+            Interface.sharedInstance.translateTerm(text) { (translation) in
+                guard let translation = translation else {
+                    return
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.translateLabel.text = translation
+                })
+            }
         case .Ended:
             UIView.animateWithDuration(0.25, animations: {
                 self.translateView.alpha = 0
-                }, completion: { (done) in
-                    self.translateView.frame = CGRectMake(16, 80, self.view.bounds.width - 32, 36)
+            }, completion: { (done) in
+                self.translateView.frame = CGRectMake(16, 80, self.view.bounds.width - 32, 36)
             })
+            
+            textView.becomeFirstResponder()
+            
+            let copyItem = UIMenuItem(title: "Copy", action: #selector(copyText))
+            let translateItem = UIMenuItem(title: "Translate", action: #selector(translate))
+            UIMenuController.sharedMenuController().menuItems = [copyItem, translateItem]
+            UIMenuController.sharedMenuController().setTargetRect(CGRectMake(point.x, point.y, 1, 1), inView: view)
+            UIMenuController.sharedMenuController().setMenuVisible(true, animated: true)
         default:
             break
         }
+    }
+    
+    internal func copyText() {
+        let text = (textView.text as NSString).substringWithRange(textView.selectedRange)
+        UIPasteboard.generalPasteboard().string = text
+    }
+    
+    internal func translate() {
+        
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+        return action == #selector(copyText) || action == #selector(translate)
     }
 }
