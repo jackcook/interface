@@ -30,6 +30,23 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
         Interface.sharedInstance.getArticleThumbnail(article) { (image) in
             self.imageView.image = image
         }
+        
+        if Quizlet.sharedInstance.setId == 0 {
+            guard let language = language else {
+                return
+            }
+            
+            var terms = [String: String]()
+            
+            switch language {
+            case "zh-CN": terms = ["家": "family", "我": "i"]
+            case "es-ES": terms = ["hola": "hello", "qué": "what"]
+            case "sv-SE": terms = ["äpple": "apple", "injenjör": "engineer"]
+            default: terms = ["lait": "milk", "chaise": "chair"]
+            }
+            
+            Quizlet.sharedInstance.createSet(terms, completion: { (url) in })
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,7 +70,11 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
         articleTitle.frame = CGRectMake(16, 16, scrollView.bounds.width - 32, articleTitleHeight)
         
         let imageWidth = scrollView.bounds.width
-        imageView.frame = CGRectMake(0, articleTitle.frame.origin.y + articleTitle.frame.size.height + 16, imageWidth, imageWidth * (9/16))
+        if article.imageUrl == "" {
+            imageView.frame = CGRectMake(0, articleTitle.frame.origin.y + articleTitle.frame.size.height, imageWidth, 0)
+        } else {
+            imageView.frame = CGRectMake(0, articleTitle.frame.origin.y + articleTitle.frame.size.height + 16, imageWidth, imageWidth * (9/16))
+        }
         
         if textView == nil {
             guard let text = article.text else {

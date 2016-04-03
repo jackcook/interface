@@ -29,24 +29,12 @@ class LanguageViewController: UIViewController, UITableViewDataSource, UITableVi
         for idx in 0..<tableView.numberOfRowsInSection(0) {
             let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: idx, inSection: 0))
             if cell?.accessoryType == .Checkmark {
-                var terms = [String: String]()
-                
                 switch idx {
-                case 1:
-                    language = "zh-CN"
-                    terms = ["家": "family", "我": "i"]
-                case 3:
-                    language = "es-ES"
-                    terms = ["hola": "hello", "qué": "what"]
-                case 4:
-                    language = "sv-SE"
-                    terms = ["äpple": "apple", "injenjör": "engineer"]
-                default:
-                    language = "fr-FR"
-                    terms = ["lait": "milk", "chaise": "chair"]
+                case 1: language = "zh-CN"
+                case 3: language = "es-ES"
+                case 4: language = "sv-SE"
+                default: language = "fr-FR"
                 }
-                
-                Quizlet.sharedInstance.createSet(terms, completion: { (url) in })
                 
                 break
             }

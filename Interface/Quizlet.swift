@@ -90,7 +90,7 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
                 return
             }
             
-            guard let url = NSURL(string: "https://api.quizlet.com/2.0/sets/\(self.setId)/terms?term=\(term)&definition=\(translation)") else {
+            guard let urlString = "https://api.quizlet.com/2.0/sets/\(self.setId)/terms?term=\(term)&definition=\(translation)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()), url = NSURL(string: urlString) else {
                 return
             }
             
@@ -99,7 +99,11 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
             
             request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             
-            let task = session.dataTaskWithRequest(request)
+            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+                guard let _ = data else {
+                    return
+                }
+            })
             task.resume()
         }
         
@@ -133,7 +137,7 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
         let session = NSURLSession(configuration: sessionConfig)
         
         var bodyParameters = [
-            "lang_terms": lang,
+            "lang_terms": "fr",
             "lang_definitions": "en",
             "title": "Article Words"
         ]
@@ -236,7 +240,6 @@ public class Quizlet: NSObject, SFSafariViewControllerDelegate {
             }
             
             self.accessToken = accessToken
-            print(accessToken)
         }
         
         task.resume()
