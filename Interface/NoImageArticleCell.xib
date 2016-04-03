@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="YCr-OM-0Q1" customClass="ArticleCell" customModule="Interface" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="578" height="154"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#VivreAvec: Attentants, crise des migrants… quand l’actualité booste l’engagement associatif" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2p-HX-nym">
+                    <rect key="frame" x="16" y="16" width="546" height="74"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeMonde" translatesAutoresizingMaskIntoConstraints="NO" id="9TZ-wu-Vg3">
+                    <rect key="frame" x="16" y="126" width="52" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="9TZ-wu-Vg3" secondAttribute="height" multiplier="810:187" id="aO3-zD-rQ9"/>
+                        <constraint firstAttribute="height" constant="12" id="ciM-BF-DCa"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0v-c1-TbW">
+                    <rect key="frame" x="548" y="126" width="14" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ir-E0-vgq">
+                    <rect key="frame" x="16" y="98" width="546" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="1QY-HE-oVO"/>
+                        <constraint firstAttribute="height" constant="18" id="Zvm-sc-FDd"/>
+                    </constraints>
+                    <string key="text">A la fin de l’année 2015, Anne-Marie Thierry a dû allonger ses permanences dans une antenne de France Bénévolat du 10e arrondissement de Paris. Ses trois heures hebdomadaires n’étaient plus suffisantes pour accueillir tous les volontaires la sollicitant pour entrer en contact avec des associations à la recherche de bénévoles.
+En savoir plus sur http://www.lemonde.fr/attaques-a-paris/article/2016/04/01/a-publier-a-13h-vivreavec-attentats-crise-des-migrants-quand-l-actualite-booste-l-engagement-associatif_4893974_4809495.html#rsr6ODvKeq8J7zGJ.99</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="1QY-HE-oVO"/>
+                        </mask>
+                    </variation>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9ir-E0-vgq" firstAttribute="top" secondItem="O2p-HX-nym" secondAttribute="bottom" constant="8" id="46P-qg-Szo"/>
+                <constraint firstItem="O2p-HX-nym" firstAttribute="leading" secondItem="YCr-OM-0Q1" secondAttribute="leading" constant="16" id="BLi-qG-CKB"/>
+                <constraint firstAttribute="trailing" secondItem="O2p-HX-nym" secondAttribute="trailing" constant="16" id="JGZ-DH-il3"/>
+                <constraint firstAttribute="bottom" secondItem="9TZ-wu-Vg3" secondAttribute="bottom" constant="16" id="Nbb-eB-enR"/>
+                <constraint firstItem="f0v-c1-TbW" firstAttribute="top" secondItem="9ir-E0-vgq" secondAttribute="bottom" constant="10" id="Pdb-Mv-YnO"/>
+                <constraint firstItem="9TZ-wu-Vg3" firstAttribute="top" secondItem="9ir-E0-vgq" secondAttribute="bottom" constant="10" id="TKe-uy-HYG"/>
+                <constraint firstItem="O2p-HX-nym" firstAttribute="top" secondItem="YCr-OM-0Q1" secondAttribute="top" constant="16" id="UOS-Vw-uJ2"/>
+                <constraint firstAttribute="trailing" secondItem="f0v-c1-TbW" secondAttribute="trailing" constant="16" id="YM7-Qt-fll"/>
+                <constraint firstItem="f0v-c1-TbW" firstAttribute="height" secondItem="9TZ-wu-Vg3" secondAttribute="height" id="aMW-Zb-GCX"/>
+                <constraint firstItem="9ir-E0-vgq" firstAttribute="leading" secondItem="YCr-OM-0Q1" secondAttribute="leading" constant="16" id="aaL-eb-laG"/>
+                <constraint firstAttribute="trailing" secondItem="9ir-E0-vgq" secondAttribute="trailing" constant="16" id="pVs-qs-5Fj"/>
+                <constraint firstItem="9TZ-wu-Vg3" firstAttribute="leading" secondItem="YCr-OM-0Q1" secondAttribute="leading" constant="16" id="uvB-uI-qid"/>
+                <constraint firstAttribute="bottom" secondItem="f0v-c1-TbW" secondAttribute="bottom" constant="16" id="xYc-aX-ClJ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="firstLineLabel" destination="9ir-E0-vgq" id="aCo-3b-eW6"/>
+                <outlet property="sourceImage" destination="9TZ-wu-Vg3" id="j8g-GY-7zE"/>
+                <outlet property="timeLabel" destination="f0v-c1-TbW" id="QPf-gB-ThY"/>
+                <outlet property="titleLabel" destination="O2p-HX-nym" id="OXW-Ut-lqz"/>
+            </connections>
+            <point key="canvasLocation" x="401" y="262"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="LeMonde" width="139" height="32"/>
+    </resources>
+</document>

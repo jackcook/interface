@@ -16,7 +16,7 @@ class ArticleCell: UITableViewCell {
     @IBOutlet weak var firstLineLabel: UILabel?
     @IBOutlet weak var sourceImage: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var articleImage: UIImageView!
+    @IBOutlet weak var articleImage: UIImageView?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +30,7 @@ class ArticleCell: UITableViewCell {
         firstLineLabel?.text = article.description
         
         Interface.sharedInstance.getArticleThumbnail(article) { (image) in
-            self.articleImage.image = image
+            self.articleImage?.image = image
         }
     }
 }
