@@ -77,25 +77,11 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
         }
         
         if textView == nil {
-            var articleText = article.text.componentsSeparatedByString("\n")
-            
-            var idx = 0
-            for line in articleText {
-                if line.characters.count < 50 {
-                    articleText.removeAtIndex(idx)
-                    idx -= 1
-                }
-                
-                idx += 1
-            }
-            
-            let finalText = articleText.joinWithSeparator("\n\n")
-            
             textView = ArticleTextView(delegate: self)
             textView.editable = false
             textView.font = UIFont.systemFontOfSize(16)
             textView.scrollEnabled = false
-            textView.text = finalText
+            textView.text = article.text
             scrollView.addSubview(textView)
             
             let paragraphStyle = NSMutableParagraphStyle()
