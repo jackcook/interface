@@ -77,11 +77,7 @@ class ArticleViewController: UIViewController, ArticleTextViewDelegate {
         }
         
         if textView == nil {
-            guard let text = article.text else {
-                return
-            }
-            
-            var articleText = text.componentsSeparatedByString("\n")
+            var articleText = article.text.componentsSeparatedByString("\n")
             
             var idx = 0
             for line in articleText {

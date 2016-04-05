@@ -23,7 +23,11 @@ public class Interface {
     }
     
     func getArticleThumbnail(article: Article, completion: (image: UIImage?) -> Void) {
-        if let image = imageCache[article.imageUrl] {
+        guard let imgurl = article.imageUrl else {
+            return
+        }
+        
+        if let image = imageCache[imgurl] {
             dispatch_async(dispatch_get_main_queue(), { 
                 completion(image: image)
             })
@@ -31,7 +35,7 @@ public class Interface {
             return
         }
         
-        guard let url = NSURL(string: article.imageUrl) else {
+        guard let url = NSURL(string: imgurl) else {
             return
         }
         
@@ -78,10 +82,10 @@ public class Interface {
             if let articles = json["articles"].array {
                 for article in articles {
                     if let url = article["url"].string,
-                        image = article["image"].string,
                         title = article["title"].string,
-                        description = article["description"].string {
-                        let articleObject = Article(articleUrl: url, description: description == "" ? nil : description, imageUrl: image, text: article["text"].string, title: title)
+                        text = article["text"].string {
+                        let image = article["image"].string
+                        let articleObject = Article(articleUrl: url, imageUrl: image, text: text, title: title)
                         retrievedArticles.append(articleObject)
                     }
                 }
@@ -140,8 +144,7 @@ public class Interface {
 
 struct Article {
     let articleUrl: String
-    let description: String?
-    let imageUrl: String
-    let text: String?
+    let imageUrl: String?
+    let text: String
     let title: String
 }

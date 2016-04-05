@@ -32,7 +32,7 @@ class ArticleCell: UITableViewCell {
     
     func configure(article: Article) {
         titleLabel.text = article.title
-        firstLineLabel?.text = article.description
+        firstLineLabel?.text = article.text
         
         Interface.sharedInstance.getArticleThumbnail(article) { (image) in
             self.articleImage?.image = image
