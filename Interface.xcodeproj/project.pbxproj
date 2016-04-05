@@ -11,6 +11,9 @@
 		EB0A96641CB0543300A6AF74 /* LargeArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0A96631CB0543300A6AF74 /* LargeArticleCell.xib */; };
 		EB2EE6D81CB048190051883F /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB2EE6D71CB048190051883F /* ArticleCell.xib */; };
 		EB2EE6DA1CB04B370051883F /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EE6D91CB04B370051883F /* ArticleCell.swift */; };
+		EB47C4971CB4142500C61F43 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47C4961CB4142500C61F43 /* ShareViewController.swift */; };
+		EB47C49A1CB4142500C61F43 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB47C4981CB4142500C61F43 /* MainInterface.storyboard */; };
+		EB47C49E1CB4142500C61F43 /* Add to Interface.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EB47C4941CB4142500C61F43 /* Add to Interface.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EB831DAC1CB08A480023F444 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB831DAB1CB08A480023F444 /* ArticleViewController.swift */; };
 		EB831DAE1CB0C1140023F444 /* ArticleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB831DAD1CB0C1140023F444 /* ArticleTextView.swift */; };
 		EB831DB01CB0EDEB0023F444 /* Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB831DAF1CB0EDEB0023F444 /* Interface.swift */; };
@@ -24,6 +27,30 @@
 		EBF49D991CB158DD005CA862 /* NoImageArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF49D981CB158DD005CA862 /* NoImageArticleCell.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EB47C49C1CB4142500C61F43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBCCC8701CB0475C001EEF5B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB47C4931CB4142500C61F43;
+			remoteInfo = "Add to Interface";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EB47C4A21CB4142500C61F43 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EB47C49E1CB4142500C61F43 /* Add to Interface.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		12C93CA08CF112595090598D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		534C2B1581E00617B05B6A60 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -31,6 +58,10 @@
 		EB0A96631CB0543300A6AF74 /* LargeArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeArticleCell.xib; sourceTree = "<group>"; };
 		EB2EE6D71CB048190051883F /* ArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArticleCell.xib; path = ../../interface/Interface/ArticleCell.xib; sourceTree = "<group>"; };
 		EB2EE6D91CB04B370051883F /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
+		EB47C4941CB4142500C61F43 /* Add to Interface.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Add to Interface.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB47C4961CB4142500C61F43 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		EB47C4991CB4142500C61F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		EB47C49B1CB4142500C61F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB831DAB1CB08A480023F444 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		EB831DAD1CB0C1140023F444 /* ArticleTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTextView.swift; sourceTree = "<group>"; };
 		EB831DAF1CB0EDEB0023F444 /* Interface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interface.swift; sourceTree = "<group>"; };
@@ -47,6 +78,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EB47C4911CB4142500C61F43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBCCC8751CB0475C001EEF5B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,10 +113,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EB47C4951CB4142500C61F43 /* Add to Interface */ = {
+			isa = PBXGroup;
+			children = (
+				EB47C4961CB4142500C61F43 /* ShareViewController.swift */,
+				EB47C4981CB4142500C61F43 /* MainInterface.storyboard */,
+				EB47C49B1CB4142500C61F43 /* Info.plist */,
+			);
+			path = "Add to Interface";
+			sourceTree = "<group>";
+		};
 		EBCCC86F1CB0475C001EEF5B = {
 			isa = PBXGroup;
 			children = (
 				EBCCC87A1CB0475C001EEF5B /* Interface */,
+				EB47C4951CB4142500C61F43 /* Add to Interface */,
 				EBCCC8791CB0475C001EEF5B /* Products */,
 				7F097CEAFB926D98E415739F /* Pods */,
 				7C1C3D0EEA361861AABBA8E8 /* Frameworks */,
@@ -89,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				EBCCC8781CB0475C001EEF5B /* Interface.app */,
+				EB47C4941CB4142500C61F43 /* Add to Interface.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +168,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EB47C4931CB4142500C61F43 /* Add to Interface */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB47C4A11CB4142500C61F43 /* Build configuration list for PBXNativeTarget "Add to Interface" */;
+			buildPhases = (
+				EB47C4901CB4142500C61F43 /* Sources */,
+				EB47C4911CB4142500C61F43 /* Frameworks */,
+				EB47C4921CB4142500C61F43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Add to Interface";
+			productName = "Add to Interface";
+			productReference = EB47C4941CB4142500C61F43 /* Add to Interface.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		EBCCC8771CB0475C001EEF5B /* Interface */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EBCCC88A1CB0475C001EEF5B /* Build configuration list for PBXNativeTarget "Interface" */;
@@ -128,10 +195,12 @@
 				EBCCC8761CB0475C001EEF5B /* Resources */,
 				EC237A332471FC3ACB3D9AF6 /* Embed Pods Frameworks */,
 				E7C590B705E597E758B43299 /* Copy Pods Resources */,
+				EB47C4A21CB4142500C61F43 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EB47C49D1CB4142500C61F43 /* PBXTargetDependency */,
 			);
 			name = Interface;
 			productName = Interface;
@@ -148,6 +217,9 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Jack Cook";
 				TargetAttributes = {
+					EB47C4931CB4142500C61F43 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					EBCCC8771CB0475C001EEF5B = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -167,11 +239,20 @@
 			projectRoot = "";
 			targets = (
 				EBCCC8771CB0475C001EEF5B /* Interface */,
+				EB47C4931CB4142500C61F43 /* Add to Interface */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EB47C4921CB4142500C61F43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB47C49A1CB4142500C61F43 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBCCC8761CB0475C001EEF5B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -236,6 +317,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EB47C4901CB4142500C61F43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB47C4971CB4142500C61F43 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBCCC8741CB0475C001EEF5B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,7 +342,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		EB47C49D1CB4142500C61F43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB47C4931CB4142500C61F43 /* Add to Interface */;
+			targetProxy = EB47C49C1CB4142500C61F43 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		EB47C4981CB4142500C61F43 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB47C4991CB4142500C61F43 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		EBCCC87F1CB0475C001EEF5B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -273,6 +378,28 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EB47C49F1CB4142500C61F43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Add to Interface/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nyc.jackcook.Interface.Add-to-Interface";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EB47C4A01CB4142500C61F43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Add to Interface/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nyc.jackcook.Interface.Add-to-Interface";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		EBCCC8881CB0475C001EEF5B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -387,6 +514,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EB47C4A11CB4142500C61F43 /* Build configuration list for PBXNativeTarget "Add to Interface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB47C49F1CB4142500C61F43 /* Debug */,
+				EB47C4A01CB4142500C61F43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EBCCC8731CB0475C001EEF5B /* Build configuration list for PBXProject "Interface" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
